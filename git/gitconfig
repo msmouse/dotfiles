@@ -89,6 +89,7 @@
   svnr = svn rebase
   svnd = svn dcommit
   svnl = svn log --oneline --show-commit
+	restack = "!git rebase $1^ $1 --onto HEAD #"
 [format]
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
 [mergetool]
@@ -111,7 +112,7 @@
 [core]
   autocrlf = false
   editor = vim
-  excludesfile = ~/.yadr/git/gitignore
+	excludesfile = /Users/aldenhu/.gitignore_global
 [advice]
   statusHints = false
 [diff]
@@ -125,3 +126,6 @@
   enabled = true
 [include]
   path = .gitconfig.user
+[user]
+	name = aldenhu
+	email = aldenhu@instagram.com

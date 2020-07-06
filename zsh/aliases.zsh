@@ -58,6 +58,7 @@ MACVIM_INSTALLED=$?
 if [ $MACVIM_INSTALLED -eq 0 ]; then
   alias vim="mvim -v"
 fi
+alias vi=vim
 
 # mimic vim functions
 alias :q='exit'
@@ -69,45 +70,45 @@ alias ve='vim ~/.vimrc'
 alias ze='vim ~/.zshrc'
 
 # Git Aliases
-alias gs='git status'
-alias gstsh='git stash'
-alias gst='git stash'
-alias gsp='git stash pop'
-alias gsa='git stash apply'
-alias gsh='git show'
-alias gshw='git show'
-alias gshow='git show'
-alias gi='vim .gitignore'
-alias gcm='git ci -m'
-alias gcim='git ci -m'
-alias gci='git ci'
-alias gco='git co'
-alias gcp='git cp'
-alias ga='git add -A'
-alias gap='git add -p'
-alias guns='git unstage'
-alias gunc='git uncommit'
-alias gm='git merge'
-alias gms='git merge --squash'
-alias gam='git amend --reset-author'
-alias grv='git remote -v'
-alias grr='git remote rm'
-alias grad='git remote add'
-alias gr='git rebase'
-alias gra='git rebase --abort'
-alias ggrc='git rebase --continue'
-alias gbi='git rebase --interactive'
-alias gl='git l'
-alias glg='git l'
-alias glog='git l'
-alias co='git co'
-alias gf='git fetch'
-alias gfp='git fetch --prune'
-alias gfa='git fetch --all'
-alias gfap='git fetch --all --prune'
-alias gfch='git fetch'
-alias gd='git diff'
-alias gb='git b'
+# alias gs='git status'
+# alias gstsh='git stash'
+# alias gst='git stash'
+# alias gsp='git stash pop'
+# alias gsa='git stash apply'
+# alias gsh='git show'
+# alias gshw='git show'
+# alias gshow='git show'
+# alias gi='vim .gitignore'
+# alias gcm='git ci -m'
+# alias gcim='git ci -m'
+# alias gci='git ci'
+# alias gco='git co'
+# alias gcp='git cp'
+# alias ga='git add -A'
+# alias gap='git add -p'
+# alias guns='git unstage'
+# alias gunc='git uncommit'
+# alias gm='git merge'
+# alias gms='git merge --squash'
+# alias gam='git amend --reset-author'
+# alias grv='git remote -v'
+# alias grr='git remote rm'
+# alias grad='git remote add'
+# alias gr='git rebase'
+# alias gra='git rebase --abort'
+# alias ggrc='git rebase --continue'
+# alias gbi='git rebase --interactive'
+# alias gl='git l'
+# alias glg='git l'
+# alias glog='git l'
+# alias co='git co'
+# alias gf='git fetch'
+# alias gfp='git fetch --prune'
+# alias gfa='git fetch --all'
+# alias gfap='git fetch --all --prune'
+# alias gfch='git fetch'
+# alias gd='git diff'
+# alias gb='git b'
 # Staged and cached are the same thing
 alias gdc='git diff --cached -w'
 alias gds='git diff --staged -w'
@@ -211,3 +212,56 @@ alias dbmu='spring rake db:migrate:up'
 
 # Homebrew
 alias brewu='brew update && brew upgrade && brew cleanup && brew doctor'
+
+# mine
+alias moshdev7='mosh -6 dev7'
+alias moshdev='mosh msmouse@192.168.3.201'
+alias adp='arc diff --preview'
+alias pd='pull_distillery.sh'
+alias msg='open -n -a Google\ Chrome --args --app=https://fb.facebook.com/chat'
+alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+alias vi=vim
+alias b='for i in `seq 1 20`; do echo; done'
+
+# aliases: hg
+alias hgbm='hg bookmark'
+alias hgrsc='hg reset --clean'
+alias hgpu='hg pull --update'
+alias hgpr='hg pull --rebase'
+# aliases: git
+alias gam='git amend -a -C HEAD'
+alias gsl='git sl'
+alias gco='git checkout'
+alias gcb='git checkout -b'
+alias gcm='git checkout master'
+alias gpu='git pull'
+alias gdf='git diff'
+alias gsh='git show'
+alias gcam='git commit -am'
+alias grb='git rebase'
+alias grs='git restack'
+# aliases: jf
+alias jfs="jf submit"
+alias jfsm="jf submit -m"
+alias jfg="jf get"
+# aliases: cargo
+cargo_test_less () {
+  cargo xtest $@ -- --color always | less -RO ~/local/ct.log 2>&1
+}
+alias ct=cargo_test_less
+alias vt="less -F -R ~/work/temp/ct.log"
+# aliases: arc
+alias al='arc lint'
+# aliases: aws
+alias aws-source-mfa='source ~/bin/aws-mfa'
+alias aws-login-ecr='$(aws ecr get-login --no-include-email --region us-west-2)'
+aws-ssh-jumphost () {
+  ssh ssh.$1.aws.hlw3truzy4ls.com
+}
+aws-ssh-internal () {
+  ip=$(echo $1 | perl -ple 's/\./-/g')
+  workspace=${2:-dev}
+  region=${3:-us-west-2}
+
+  ssh ip-$ip.$region.compute.internal%$workspace
+}
